@@ -1,0 +1,106 @@
+/*header*/
+.Header {
+    background-color: #09BFFF;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px;
+    border-radius: 50px;
+}
+.iconham {
+    width: 5%;
+}
+.judul {
+    display: flex;
+    flex-direction: row;
+    padding-left: 20px;
+}
+.awal {
+    color: white;
+}
+.akhir {
+    color: darkblue;
+}
+.awal, .akhir {
+    font-size: 50px;
+}
+.navi > ul{
+    display: flex;
+    flex-direction: row;
+    margin-right: 20px;
+}
+.navi > ul > li {
+    list-style: none;
+    margin: 5px;
+}
+.navi > ul > li > a {
+    text-decoration: none;
+    color: white;
+}
+.navi > ul > li > a:hover {
+    color: darkblue;
+    background-color: white;
+    padding: 10px;
+    border-radius: 50px;
+}
+.active{
+    color: darkblue !important;
+    background-color: white !important;
+    padding: 10px;
+    border-radius: 50px;
+}
+
+/*isi*/
+/*beranda*/
+.isi {
+    background-image: url("library-with-books.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 620px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    border-radius: 10px;
+}
+.slogan {
+    text-align: center;
+    font-size: 50px;
+    color: #09BFFF;
+    background-color: white;
+    padding: 10px;
+    border-radius: 50px;
+}
+
+/*buku*/
+.tbuku {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #09BFFF;
+    color: white;
+}
+.tbuku, th, td {
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+/*pinjam*/
+.tpinjam {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #09BFFF;
+    color: white;
+}
+.tpinjam, th, td {
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
