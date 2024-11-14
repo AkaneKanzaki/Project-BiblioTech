@@ -38,4 +38,56 @@ class Perpustakaan extends Controller
         echo view('Layouts/footer');
         echo view('Perpustakaan/detailbuku', $data2);
     }
+    public function tambahbuku()
+    {
+        session();
+        $data = [
+            'title' => 'Masukan Data Buku',
+            'validation' => \Config\Services::validation()
+        ];
+        echo view('Layouts/header', $data);
+        echo view('Perpustakaan/tambahbuku');
+        echo view('Layouts/footer');
+    }
+    public function simpan()
+    {
+        if (!$this->validate([
+            'kode_buku' => [
+                'rules' => 'required|is_unique[TbukuModel.kode_buku]',
+                'errors' => [
+                    'required' => 'Kode Buku Harus Diinputkan',
+                    'is_unique' => '{field} Buku Sudah Terdaftar'
+                ]
+            ],
+            'nama_buku' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Nama Buku Buku Harus Diinputkan'
+                ]
+            ],
+            'tahun_terbit' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Tahun Terbit Anak Harus Diinputkan'
+                ]
+            ],
+            'penulis' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Nama Penulis Harus Diinputkan'
+                ]
+            ]
+        ])) {
+            $validation = \Config\Services::validation();
+            return redirect()->to('/Perpustakaan/tambahbuku')->withInput()->with('validation', $validation);
+        }  
+        $this->objekbuku->save([
+            'kode_buku' => $this->request->getVar('kode_buku'),
+            'nama_buku' => $this->request->getVar('nama_buku'),
+            'tahun_terbit' => $this->request->getVar('tahun_terbit'),
+            'penulis' => $this->request->getVar('penulis')
+        ]);
+        session()->setFlashdata('pesan', 'Data Berhasil Disimpan');
+        return redirect()->to('/Perpustakaan/databuku');
+    }
 }

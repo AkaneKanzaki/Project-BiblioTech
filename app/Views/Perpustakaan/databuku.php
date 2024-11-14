@@ -2,8 +2,10 @@
     <div class="row">
         <div class="col">
             <br>
+            <a href="/Perpustakaan/tambahbuku" class="btn btn-primary">Tambah Buku</a><br><br>
             <h1>Daftar Data Buku</h1>
-            <table class="table-custom">
+            <center>
+            <table class="table table-striped table-bordered"style="width: 100%">
                 <thead>
                     <tr class="tabel-header">
                         <th scope="col">#</th>
