@@ -15,15 +15,10 @@
         </div>
         <div class="navi">
             <ul>
-                <li><a href="#" class="active">Beranda</a></li>
-                <li><a href="...">Buku</a></li>
+                <li><a href="/Perpustakaan/index">Beranda</a></li>
+                <li><a href="/Perpustakaan/databuku">Buku</a></li>
                 <li><a href="...">Peminjaman</a></li>
                 <li><a href="...">Kontak</a></li>
             </ul>
         </div>
     </div>
-    <div class="isi">
-        <div class="slogan">Ayo Baca Buku Kidz, Biar Sigma</div>
-    </div>
-</body>
-</html>
