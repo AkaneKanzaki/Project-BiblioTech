@@ -5,6 +5,7 @@ class TbukuModel extends Model
 {
     protected $table = 'tb_buku';
     protected $primaryKey = 'kode_buku';
+    protected $useAutoIncrement = false;
     protected $allowedFields = ['kode_buku', 'nama_buku', 'tahun_terbit', 'penulis', 'harga', 'stok'];
     public function getobjekbuku($kode_buku = false)
     {

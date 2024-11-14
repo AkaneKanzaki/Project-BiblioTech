@@ -11,8 +11,8 @@
                     <p class="card-text">Tahun Terbit : <?= $objekbuku['tahun_terbit'] ?></p>
                     <p class="card-text">Harga : <?= $objekbuku['harga'] ?></p>
                     <p class="card-text">Stok : <?= $objekbuku['stok'] ?></p>
-                    <a href="/Perpustakaan/editbuku/<?= $objekbuku['kode_buku'] ?>"class="btn btn-primary">Edit Data</a><br>
-                    <a href="/Perpustakaan/hapusbuku/<?= $objekbuku['kode_buku'] ?>"class="btn btn-danger" onclick="return confirm('Yakin Hapus Data?');">Hapus Data</a><br>
+                    <a href="/Perpustakaan/editdatabuku/<?= $objekbuku['kode_buku'] ?>"class="btn btn-primary">Edit Data</a><br>
+                    <a href="/Perpustakaan/hapusdatabuku/<?= $objekbuku['kode_buku'] ?>"class="btn btn-danger" onclick="return confirm('Yakin Hapus Data?');">Hapus Data</a><br>
                     <a href="/Perpustakaan/databuku" class="btn btn-success">Kembali</a>
                 </div>
             </div>
