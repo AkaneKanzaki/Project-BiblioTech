@@ -6,7 +6,7 @@
             <table class="table-custom">
                 <thead>
                     <tr class="tabel-header">
-                        <th scope="col">#</th>
+                        <th scope="col">No</th>
                         <th scope="col">Kode Buku</th>
                         <th scope="col">Nama Buku</th>
                         <th scope="col">Tahun Terbit</th>

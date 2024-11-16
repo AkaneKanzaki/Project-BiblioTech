@@ -3,7 +3,7 @@
     <form action="/Perpustakaan/updatedatabuku/<?= $objekbuku['kode_buku'] ?>" method="POST" class="form-horizontal">
         <?= csrf_field() ?>
         <div class="form-group">
-            <label for="nama_buku">Kode Buku</label>
+            <label for="kode_buku">Kode Buku</label>
             <input type="text" id="kode_buku" name="kode_buku" autofocus value="<?= $objekbuku['kode_buku'] ?>" placeholder="Masukkan kode buku" required>
         </div>
         <div class="form-group">
@@ -29,7 +29,7 @@
         <div class="form-group form-submit">
             <button type="submit" class="btn-submit">Edit Data Buku</button>
             <br>
-            <a href="/Perpustakaan/datadatabuku" class="btn-back">Kembali</a>
+            <a href="/Perpustakaan/databuku" class="btn-back">Kembali</a>
         </div>
     </form>
 </div>

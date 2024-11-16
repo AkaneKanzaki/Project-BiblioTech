@@ -2,11 +2,17 @@
 namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\TbukuModel;
+use App\Models\TpeminjamanModel;
+use App\Models\TuserModel;
 class Perpustakaan extends Controller
 {
+    protected $objekuser;
     protected $objekbuku;
+    protected $objekpeminjaman;
     public function __construct()
     {
+        $this->objekuser = new TuserModel();
+        $this->objekpeminjaman = new TpeminjamanModel();
         $this->objekbuku = new TbukuModel();
     }
     public function index()
@@ -49,16 +55,6 @@ class Perpustakaan extends Controller
     }
     public function simpandatabuku()
     {
-        $validationRules = [
-            'nama_buku' => 'required|min_length[10]',
-            'tahun_terbit' => 'required|numeric|exact_length[4]',
-            'penulis' => 'required|min_length[10]',
-            'harga' => 'required|numeric|greater_than[0]',
-            'stok' => 'required|numeric|greater_than_equal_to[0]'
-        ];
-        if (!$this->validate($validationRules)) {
-            return redirect()->to('/Perpustakaan/tambahbuku')->withInput()->with('validation', $this->validator);
-        }
         $this->objekbuku->save([
             'kode_buku' => $this->request->getVar('kode_buku'),
             'nama_buku' => $this->request->getVar('nama_buku'),
@@ -99,5 +95,122 @@ class Perpustakaan extends Controller
         ]);
         session()->setFlashdata('ubah', 'Data Berhasil Diubah');
         return redirect()->to('/Perpustakaan/databuku');
+    }
+    public function datapeminjaman()
+{
+    $objekpeminjaman = $this->objekpeminjaman->getobjekpeminjaman();
+    $data = [
+        'title' => 'Daftar Data Peminjaman',
+        'objekpeminjaman' => $objekpeminjaman
+    ];
+    echo view('Layouts/header', $data);
+    echo view('Perpustakaan/datapeminjaman', $data);
+    echo view('Layouts/footer');
+}
+    public function detaildatapeminjaman($kode_peminjaman, $kode_buku)
+    {
+    $objekbuku = $this->objekbuku->getobjekbuku($kode_buku);
+    $objekpeminjaman = $this->objekpeminjaman->getobjekpeminjaman($kode_peminjaman);
+    $data = [
+        'title' => 'Detail Data Peminjaman ' . $kode_peminjaman,
+        'objekpeminjaman' => $objekpeminjaman,
+        'objekbuku' => $objekbuku
+    ];
+    echo view('Layouts/header', $data);
+    echo view('Perpustakaan/detaildatapeminjaman', $data);
+    echo view('Layouts/footer');
+    }
+    public function tambahdatapeminjaman()
+    {
+        $data = [
+            'title' => 'Tambah Data Peminjaman'
+        ];
+        echo view('Layouts/header' , $data);
+        echo view('Layouts/footer');
+        echo view('Perpustakaan/tambahdatapeminjaman');
+    }
+    public function simpandatapeminjaman()
+    {
+        $this->objekpeminjaman->save([
+            'kode_peminjaman' => $this->request->getVar('kode_peminjaman'),
+            'kode_buku' => $this->request->getVar('kode_buku'),
+            'id' => $this->request->getVar('id'),
+            'tgl_peminjaman' => $this->request->getVar('tgl_peminjaman'),
+            'tgl_pengembalian' => $this->request->getVar('tgl_pengembalian')
+        ]);
+        session()->setFlashdata('simpan', 'Data Berhasil Ditambahkan');
+        return redirect()->to('/Perpustakaan/datapeminjaman');
+    }
+    public function hapusdatapeminjaman($kode_peminjaman)
+    {
+        $this->objekpeminjaman->delete($kode_peminjaman);
+        session()->setFlashdata('hapus', 'Data Berhasil Dihapus');
+        return redirect()->to('/Perpustakaan/datapeminjaman');
+    }
+    public function datauser()
+    {
+        $objekuser = $this->objekuser->findAll();
+        $data = [
+            'title' => 'Daftar Data User',
+            'objekuser' => $objekuser
+        ];
+        echo view('Layouts/header', $data);
+        echo view('Perpustakaan/datauser');
+        echo view('Layouts/footer');
+    }
+    public function detaildatauser($id)
+    {
+        $objekuser = $this->objekuser->getobjekuser($id);
+        $data['title'] = 'Detail Data User' . $id;
+        $data2['objekuser'] = $objekuser;
+        echo view('Layouts/header', $data);
+        echo view('Perpustakaan/detaildatauser', $data2);
+        echo view('Layouts/footer');
+    }
+    public function tambahdatauser()
+    {
+        $data = [
+            'title' => 'Tambah Data User'
+        ];
+        echo view('Layouts/header' , $data);
+        echo view('Layouts/footer');
+        echo view('Perpustakaan/tambahdatauser');
+    }
+    public function simpandatauser()
+    {
+        $this->objekuser->save([
+            'id' => $this->request->getVar('id'),
+            'username' => $this->request->getVar('username'),
+            'nama' => $this->request->getVar('nama')
+        ]);
+        session()->setFlashdata('simpan', 'Data Berhasil Ditambahkan');
+        return redirect()->to('/Perpustakaan/datauser');
+    }
+    public function hapusdatauser($id)
+    {
+        $this->objekuser->delete($id);
+        session()->setFlashdata('hapus', 'Data Berhasil Dihapus');
+        return redirect()->to('/Perpustakaan/datauser');
+    }
+    public function editdatauser($id)
+    {
+        $objekuser = $this->objekuser->getobjekuser($id);
+        $data = [
+            'title' => 'Edit Data User' . $objekuser ['id'],
+            'objekuser' => $objekuser
+        ];
+        echo view('Layouts/header' , $data);
+        echo view('Layouts/footer');
+        echo view('Perpustakaan/editdatauser');
+    }
+    public function updatedatauser($id)
+    {
+        $this->objekuser->save( [
+            'id' => $this->request->getVar('id'),
+            'username' => $this->request->getVar('username'),
+            'nama' => $this->request->getVar('nama')
+        ]);
+        session()->setFlashdata('ubah', 'Data Berhasil Diubah');
+        return redirect()->to('/Perpustakaan/datauser');
     }
 }

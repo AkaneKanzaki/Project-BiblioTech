@@ -17,7 +17,8 @@
             <ul>
                 <li><a href="/Perpustakaan/index">Beranda</a></li>
                 <li><a href="/Perpustakaan/databuku">Buku</a></li>
-                <li><a href="...">Peminjaman</a></li>
+                <li><a href="/Perpustakaan/datapeminjaman">Peminjaman</a></li>
+                <li><a href="/Perpustakaan/datauser">Anggota</a></li>
                 <li><a href="...">Kontak</a></li>
             </ul>
         </div>

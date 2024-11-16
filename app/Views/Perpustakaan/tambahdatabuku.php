@@ -2,7 +2,7 @@
     <h2>Tambah Data Buku</h2>
     <form action="/Perpustakaan/simpandatabuku" method="POST" class="form-horizontal">
         <div class="form-group">
-            <label for="nama_buku">Kode Buku</label>
+            <label for="kode_buku">Kode Buku</label>
             <input type="text" id="kode_buku" name="kode_buku" placeholder="Masukkan kode buku" required>
         </div>
         <div class="form-group">
