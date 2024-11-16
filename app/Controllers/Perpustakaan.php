@@ -122,12 +122,16 @@ class Perpustakaan extends Controller
     }
     public function tambahdatapeminjaman()
     {
+        $objekbuku = $this->objekbuku->findAll();
+        $objekuser = $this->objekuser->findAll();
         $data = [
-            'title' => 'Tambah Data Peminjaman'
+            'title' => 'Tambah Data Peminjaman',
+            'objekbuku' => $objekbuku,
+            'objekuser' => $objekuser,
         ];
         echo view('Layouts/header' , $data);
         echo view('Layouts/footer');
-        echo view('Perpustakaan/tambahdatapeminjaman');
+        echo view('Perpustakaan/tambahdatapeminjaman', $data);
     }
     public function simpandatapeminjaman()
     {

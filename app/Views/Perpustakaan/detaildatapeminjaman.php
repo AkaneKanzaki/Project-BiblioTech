@@ -6,7 +6,7 @@
                     <h1>Detail Data Peminjaman</h1>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Nama Peminjaman : <?= $objekpeminjaman['id'] ?></h5>
+                    <h5 class="card-title">Nama Peminjam : <?= $objekpeminjaman['nama'] ?></h5>
                     <p class="card-text">Nama Buku : <?= $objekpeminjaman['nama_buku'] ?></p>
                     <p class="card-text">Tanggal Peminjaman : <?= $objekpeminjaman['tgl_peminjaman'] ?></p>
                     <p class="card-text">Tanggal Pengembalian : <?= $objekpeminjaman['tgl_pengembalian'] ?></p>

@@ -9,7 +9,7 @@
                         <th scope="col">No</th>
                         <th scope="col">Kode Peminjaman</th>
                         <th scope="col">Nama Buku</th>
-                        <th scope="col">ID</th>
+                        <th scope="col">Nama Peminjam</th>
                         <th scope="col">Tanggal Peminjaman</th>
                         <th scope="col">Tanggal Pengembalian</th>
                         <th scope="col">Detail</th>
@@ -33,7 +33,7 @@
                             <th scope="row"><?=$no++;?></th>
                             <td><?=$row['kode_peminjaman'];?></td>
                             <td><?=$row['nama_buku'];?></td>
-                            <td><?=$row['id'];?></td>
+                            <td><?=$row['nama'];?></td>
                             <td><?=$row['tgl_peminjaman'];?></td>
                             <td><?=$row['tgl_pengembalian'];?></td>
                             <th scope="col"><a href="/Perpustakaan/detaildatapeminjaman/<?= $row['kode_peminjaman']; ?>/<?= urlencode($row['nama_buku']); ?>" class="btn btn-primary">Detail</a></th>

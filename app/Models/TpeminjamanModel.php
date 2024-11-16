@@ -13,12 +13,12 @@ class TpeminjamanModel extends Model
     public function getobjekpeminjaman($kode_peminjaman = false)
     {
         if ($kode_peminjaman == false) {
-            return $this->select('tb_peminjaman.*, tb_buku.nama_buku, tb_user.nama AS nama_user')
+            return $this->select('tb_peminjaman.*, tb_buku.nama_buku, tb_user.nama')
                         ->join('tb_buku', 'tb_buku.kode_buku = tb_peminjaman.kode_buku')
                         ->join('tb_user', 'tb_user.id = tb_peminjaman.id')
                         ->findAll();
         }
-        return $this->select('tb_peminjaman.*, tb_buku.nama_buku, tb_user.nama AS nama_user')
+        return $this->select('tb_peminjaman.*, tb_buku.nama_buku, tb_user.nama')
                     ->join('tb_buku', 'tb_buku.kode_buku = tb_peminjaman.kode_buku')
                     ->join('tb_user', 'tb_user.id = tb_peminjaman.id')
                     ->where(['kode_peminjaman' => $kode_peminjaman])
