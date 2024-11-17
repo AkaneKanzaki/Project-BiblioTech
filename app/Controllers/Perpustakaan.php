@@ -97,28 +97,28 @@ class Perpustakaan extends Controller
         return redirect()->to('/Perpustakaan/databuku');
     }
     public function datapeminjaman()
-{
-    $objekpeminjaman = $this->objekpeminjaman->getobjekpeminjaman();
-    $data = [
+    {
+        $objekpeminjaman = $this->objekpeminjaman->getobjekpeminjaman();
+        $data = [
         'title' => 'Daftar Data Peminjaman',
         'objekpeminjaman' => $objekpeminjaman
-    ];
-    echo view('Layouts/header', $data);
-    echo view('Perpustakaan/datapeminjaman', $data);
-    echo view('Layouts/footer');
-}
+        ];
+        echo view('Layouts/header', $data);
+        echo view('Perpustakaan/datapeminjaman', $data);
+        echo view('Layouts/footer');
+    }
     public function detaildatapeminjaman($kode_peminjaman, $kode_buku)
     {
-    $objekbuku = $this->objekbuku->getobjekbuku($kode_buku);
-    $objekpeminjaman = $this->objekpeminjaman->getobjekpeminjaman($kode_peminjaman);
-    $data = [
+        $objekbuku = $this->objekbuku->getobjekbuku($kode_buku);
+        $objekpeminjaman = $this->objekpeminjaman->getobjekpeminjaman($kode_peminjaman);
+        $data = [
         'title' => 'Detail Data Peminjaman ' . $kode_peminjaman,
         'objekpeminjaman' => $objekpeminjaman,
         'objekbuku' => $objekbuku
-    ];
-    echo view('Layouts/header', $data);
-    echo view('Perpustakaan/detaildatapeminjaman', $data);
-    echo view('Layouts/footer');
+        ];
+        echo view('Layouts/header', $data);
+        echo view('Perpustakaan/detaildatapeminjaman', $data);
+        echo view('Layouts/footer');
     }
     public function tambahdatapeminjaman()
     {
@@ -139,8 +139,7 @@ class Perpustakaan extends Controller
             'kode_peminjaman' => $this->request->getVar('kode_peminjaman'),
             'kode_buku' => $this->request->getVar('kode_buku'),
             'id' => $this->request->getVar('id'),
-            'tgl_peminjaman' => $this->request->getVar('tgl_peminjaman'),
-            'tgl_pengembalian' => $this->request->getVar('tgl_pengembalian')
+            'tgl_peminjaman' => $this->request->getVar('tgl_peminjaman')
         ]);
         session()->setFlashdata('simpan', 'Data Berhasil Ditambahkan');
         return redirect()->to('/Perpustakaan/datapeminjaman');
@@ -216,5 +215,33 @@ class Perpustakaan extends Controller
         ]);
         session()->setFlashdata('ubah', 'Data Berhasil Diubah');
         return redirect()->to('/Perpustakaan/datauser');
+    }
+    public function editdatapeminjaman($kode_peminjaman)
+    {
+        $objekpeminjaman = $this->objekpeminjaman->getobjekpeminjaman($kode_peminjaman);
+        $objekbuku = $this->objekbuku->findAll();
+        $objekuser = $this->objekuser->findAll();
+        $data = [
+        'title' => 'Edit Data Peminjaman ' . $objekpeminjaman['kode_peminjaman'],
+        'objekpeminjaman' => $objekpeminjaman,
+        'objekbuku' => $objekbuku,
+        'objekuser' => $objekuser
+        ];
+        echo view('Layouts/header', $data);
+        echo view('Perpustakaan/editdatapeminjaman', $data);
+        echo view('Layouts/footer');
+    }
+    public function updatedatapeminjaman($kode_peminjaman)
+    {
+        $this->objekpeminjaman->save([
+            'kode_peminjaman' => $this->request->getVar('kode_peminjaman'),
+            'nama_buku' => $this->request->getVar('nama_buku'),
+            'nama' => $this->request->getVar('nama'),
+            'tgl_peminjaman' => $this->request->getVar('tgl_peminjaman'),
+            'tgl_pengembalian' => $this->request->getVar('tgl_pengembalian'),
+            'status' => $this->request->getVar('status')
+        ]);
+        session()->setFlashdata('ubah', 'Data Berhasil Diubah');
+        return redirect()->to('/Perpustakaan/datapeminjaman');
     }
 }

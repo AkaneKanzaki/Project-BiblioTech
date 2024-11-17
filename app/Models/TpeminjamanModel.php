@@ -8,7 +8,7 @@ class TpeminjamanModel extends Model
     protected $table = 'tb_peminjaman';
     protected $primaryKey = 'kode_peminjaman';
     protected $useAutoIncrement = false;
-    protected $allowedFields = ['kode_peminjaman', 'kode_buku', 'id', 'tgl_peminjaman', 'tgl_pengembalian'];
+    protected $allowedFields = ['kode_peminjaman', 'kode_buku', 'id', 'tgl_peminjaman', 'tgl_pengembalian', 'status'];
 
     public function getobjekpeminjaman($kode_peminjaman = false)
     {

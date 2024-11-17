@@ -271,14 +271,12 @@ select {
     -moz-appearance: none;
     appearance: none;
 }
-
 select:focus {
     outline: none;
     border-color: #09BFFF;
 }
-
-select.custom-select {
-    background-image: url('data:image/svg+xml;base64,...'); /* Tambahkan panah */
+.custom-select {
+    background-image: url('data:image/svg+xml;base64,...');
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 12px 12px;

@@ -29,7 +29,14 @@
         </div>
         <div class="form-group">
             <label for="tgl_pengembalian">Tanggal Pengembalian</label>
-            <input type="date" id="tgl_pengembalian" name="tgl_pengembalian" required>
+            <input type="date" id="tgl_pengembalian" name="tgl_pengembalian">
+        </div>
+        <div class="form-group">
+            <label for="status">Status</label>
+            <select id="status" name="status" required>
+                <option value="Dipinjam">Buku Sedang Dipinjam</option>
+                <option value="Dikembalikan">Buku Telah Dikembalikan</option>
+            </select>
         </div>
         <div class="form-group form-submit">
             <button type="submit" class="btn-submit">Tambah Peminjaman</button>
