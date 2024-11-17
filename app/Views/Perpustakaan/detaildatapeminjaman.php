@@ -10,6 +10,7 @@
                     <p class="card-text">Nama Buku : <?= $objekpeminjaman['nama_buku'] ?></p>
                     <p class="card-text">Tanggal Peminjaman : <?= $objekpeminjaman['tgl_peminjaman'] ?></p>
                     <p class="card-text">Tanggal Pengembalian : <?= $objekpeminjaman['tgl_pengembalian'] ?></p>
+                    <p class="card-text">Status : <?= $objekpeminjaman['status'] ?></p>
                     <a href="/Perpustakaan/editdatapeminjaman/<?= $objekpeminjaman['kode_peminjaman'] ?>"class="btn btn-primary">Edit Data</a><br>
                     <a href="/Perpustakaan/hapusdatapeminjaman/<?= $objekpeminjaman['kode_peminjaman'] ?>"class="btn btn-danger" onclick="return confirm('Yakin Hapus Data?');">Hapus Data</a><br>
                     <a href="/Perpustakaan/datapeminjaman" class="btn btn-success">Kembali</a>
