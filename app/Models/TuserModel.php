@@ -7,7 +7,6 @@ class TuserModel extends Model
     protected $primaryKey = 'id';
     protected $useAutoIncrement = false;
     protected $allowedFields = ['id', 'username', 'nama'];
-
     public function getobjekuser($id = false)
     {
         if ($id == false) {

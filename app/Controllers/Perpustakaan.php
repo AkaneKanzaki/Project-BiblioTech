@@ -27,7 +27,7 @@ class Perpustakaan extends Controller
     public function databuku()
     {
         $search = $this->request->getVar('search');
-        $perPage = 10;
+        $perPage = 5;
         $query = $this->objekbuku;
 
     if ($search) {
@@ -110,14 +110,28 @@ class Perpustakaan extends Controller
     }
     public function datapeminjaman()
     {
-        $objekpeminjaman = $this->objekpeminjaman->getobjekpeminjaman();
-        $data = [
+    $search = $this->request->getVar('search');
+    $perPage = 5;
+    $query = $this->objekpeminjaman
+        ->select('tb_peminjaman.*, tb_buku.nama_buku, tb_user.nama')
+        ->join('tb_buku', 'tb_buku.kode_buku = tb_peminjaman.kode_buku')
+        ->join('tb_user', 'tb_user.id = tb_peminjaman.id');
+    if ($search) {
+        $query = $query->like('tb_peminjaman.kode_peminjaman', $search)
+            ->orLike('tb_buku.nama_buku', $search)
+            ->orLike('tb_user.nama', $search);
+    }
+    $objekpeminjaman = $query->paginate($perPage, 'default');
+    $pager = $this->objekpeminjaman->pager;
+    $data = [
         'title' => 'Daftar Data Peminjaman',
-        'objekpeminjaman' => $objekpeminjaman
-        ];
-        echo view('Layouts/header', $data);
-        echo view('Perpustakaan/datapeminjaman', $data);
-        echo view('Layouts/footer');
+        'objekpeminjaman' => $objekpeminjaman,
+        'pager' => $pager,
+        'search' => $search,
+    ];
+    echo view('Layouts/header', $data);
+    echo view('Perpustakaan/datapeminjaman', $data);
+    echo view('Layouts/footer');
     }
     public function detaildatapeminjaman($kode_peminjaman, $kode_buku)
     {
@@ -164,15 +178,26 @@ class Perpustakaan extends Controller
     }
     public function datauser()
     {
-        $objekuser = $this->objekuser->findAll();
+        $search = $this->request->getVar('search');
+        $perPage = 5;
+        $query = $this->objekuser;
+        if ($search) {
+            $query = $query->like('id', $search)
+                           ->orLike('username', $search)
+                           ->orLike('nama', $search);
+        }
+        $objekuser = $query->paginate($perPage, 'default');
+        $pager = $this->objekuser->pager;
         $data = [
             'title' => 'Daftar Data User',
-            'objekuser' => $objekuser
+            'objekuser' => $objekuser,
+            'pager' => $pager,
+            'search' => $search,
         ];
         echo view('Layouts/header', $data);
-        echo view('Perpustakaan/datauser');
+        echo view('Perpustakaan/datauser', $data);
         echo view('Layouts/footer');
-    }
+    }    
     public function detaildatauser($id)
     {
         $objekuser = $this->objekuser->getobjekuser($id);

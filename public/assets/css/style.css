@@ -391,10 +391,15 @@ select:focus {
 .pagination {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    align-items: center;
+    gap: 8px;
     list-style: none;
     padding: 0;
-    gap: 5px;
+    margin: 20px 0;
+}
+.pagination li {
+    display: flex;
+    align-items: center;
 }
 .pagination li a {
     padding: 10px 15px;
@@ -406,6 +411,8 @@ select:focus {
     text-decoration: none;
     font-weight: bold;
     transition: all 0.3s;
+    display: inline-block;
+    text-align: center;
 }
 .pagination li a:hover {
     background-color: #007bb5;
