@@ -26,14 +26,26 @@ class Perpustakaan extends Controller
     }
     public function databuku()
     {
-        $objekbuku = $this->objekbuku->findAll();
+        $search = $this->request->getVar('search');
+        $perPage = 10;
+        $query = $this->objekbuku;
+
+    if ($search) {
+        $query = $query->like('nama_buku', $search)
+                       ->orLike('penulis', $search);
+    }
+        $objekbuku = $query->paginate($perPage, 'default');
+        $pager = $this->objekbuku->pager;
+
         $data = [
-            'title' => 'Daftar Data Buku',
-            'objekbuku' => $objekbuku
-        ];
-        echo view('Layouts/header' , $data);
+        'title' => 'Daftar Data Buku',
+        'objekbuku' => $objekbuku,
+        'pager' => $pager,
+        'search' => $search,
+    ];
+        echo view('Layouts/header', $data);
         echo view('Layouts/footer');
-        echo view('Perpustakaan/databuku');
+        echo view('Perpustakaan/databuku', $data);
     }
     public function detaildatabuku($kode_buku)
     {

@@ -19,7 +19,7 @@
                 <li><a href="/Perpustakaan/databuku">Buku</a></li>
                 <li><a href="/Perpustakaan/datapeminjaman">Peminjaman</a></li>
                 <li><a href="/Perpustakaan/datauser">Anggota</a></li>
-                <li><a href="...">Kontak</a></li>
+                <li><a href="/Perpustakaan/kontak">Kontak</a></li>
             </ul>
         </div>
     </div>
